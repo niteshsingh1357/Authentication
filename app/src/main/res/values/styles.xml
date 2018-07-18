@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TextLabel" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
+
+    <style name="LabelText" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">#000000</item>
+    </style>
+</resources>

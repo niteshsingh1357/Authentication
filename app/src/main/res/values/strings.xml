@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Authentication</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="button_login">LOGIN</string>
+    <string name="register_text">Not Registered? </string>
+    <string name="register_link"> Register Now</string>
+</resources>
