@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@android:color/black</item>
     </style>
 
     <style name="TextLabel" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -13,6 +14,11 @@
     </style>
 
     <style name="LabelText" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorAccent">#000000</item>
+        <item name="colorAccent">#424242</item>
     </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#FFA726</item>
+    </style>
+
 </resources>

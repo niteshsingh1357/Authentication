@@ -1,76 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:background="#FFA726"
     tools:context=".Register">
 
-    <EditText
-        android:id="@+id/unText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:inputType="textPersonName"
-        android:hint="UserName"/>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <EditText
-        android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:inputType="textPersonName"
-        android:hint="Email"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
 
-    <EditText
-        android:id="@+id/pwdText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:hint="Password"
-        android:inputType="textPassword"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/action_bar"
+        android:layout_margin="16dp"
+        android:gravity="center_vertical">
 
-    <EditText
-        android:id="@+id/confirmText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"/>
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:text="Submit"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:theme="@style/LabelText"
+            android:padding="8dp"
+            android:textColorHint="@android:color/black"
+            android:layout_alignParentLeft="true">
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_margin="8dp"
-        android:text="Login"/>
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/avl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:clickable="false"
-        app:indicatorColor="@android:color/holo_red_dark"
-        app:indicatorName="BallClipRotatePulseIndicator"
-        />
-</LinearLayout>
+            <EditText
+                android:id="@+id/input_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_username"
+                android:inputType="textEmailAddress"
+                android:theme="@style/TextLabel"
+                android:textColor="@android:color/black"
+                android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_username"
+            android:theme="@style/LabelText"
+            android:padding="8dp"
+            android:textColorHint="@android:color/black"
+            android:layout_alignParentLeft="true">
+
+            <EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:theme="@style/TextLabel"
+                android:textColor="@android:color/black"
+                android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_email"
+            android:theme="@style/LabelText"
+            android:padding="8dp"
+            android:textColorHint="@android:color/black"
+            android:layout_alignParentLeft="true">
+
+            <EditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:textColor="@android:color/black"
+                android:theme="@style/TextLabel"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_cpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_password"
+            android:layout_alignParentStart="true"
+            android:theme="@style/LabelText"
+            android:padding="8dp"
+            android:textColorHint="@android:color/black"
+            android:layout_alignParentLeft="true">
+
+            <EditText
+                android:id="@+id/input_cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_cpassword"
+                android:textColor="@android:color/black"
+                android:theme="@style/TextLabel"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_below="@id/submitButton"
+            android:padding="8dp"
+            android:layout_centerInParent="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="@string/login_text"/>
+
+            <TextView
+                android:id="@+id/loginText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:text="@string/login_link"/>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/input_layout_cpassword"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:text="Submit"
+            android:padding="4dp"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/shape"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

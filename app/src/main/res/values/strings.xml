@@ -2,7 +2,12 @@
     <string name="app_name">Authentication</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_cpassword">Confirm Password</string>
     <string name="button_login">LOGIN</string>
     <string name="register_text">Not Registered? </string>
     <string name="register_link"> Register Now</string>
+    <string name="login_text">Already Registered?</string>
+    <string name="login_link">Login</string>
+    <string name="logout">logout</string>
 </resources>

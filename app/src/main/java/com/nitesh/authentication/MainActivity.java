@@ -2,6 +2,7 @@ package com.nitesh.authentication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         mUname = findViewById(R.id.uname);
         mEmail = findViewById(R.id.email);
         mLogout = findViewById(R.id.btn);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "Fonts/Domine-Bold.ttf");
+        mLogout.setTypeface(typeface);
 
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override

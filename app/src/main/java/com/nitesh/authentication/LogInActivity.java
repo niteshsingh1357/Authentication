@@ -1,7 +1,9 @@
 package com.nitesh.authentication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -16,13 +18,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,8 +36,10 @@ public class LogInActivity extends AppCompatActivity {
     private TextView mRegisterText;
     private TextInputLayout inputEmail, inputPassword;
     private Toolbar toolbar;
-    AVLoadingIndicatorView avi;
     String token;
+    private ProgressDialog dialog;
+    private Typeface typeface;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,12 @@ public class LogInActivity extends AppCompatActivity {
         mRegisterText = findViewById(R.id.register_text);
         inputEmail = findViewById(R.id.input_layout_email);
         inputPassword = findViewById(R.id.input_layout_password);
-        avi = findViewById(R.id.avi);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "Fonts/Domine-Bold.ttf");
+        mloginButton.setTypeface(typeface);
+
+
+        dialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
         mEmail.addTextChangedListener(new MyTextWatcher(inputEmail));
         mPassword.addTextChangedListener(new MyTextWatcher(inputPassword));
@@ -62,7 +69,6 @@ public class LogInActivity extends AppCompatActivity {
         mRegisterText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAnim();
                 registerIntent();
             }
         });
@@ -75,6 +81,9 @@ public class LogInActivity extends AppCompatActivity {
                         TextUtils.isEmpty(mPassword.getText().toString().trim()))){
 
                     login(mEmail.getText().toString().trim(),mPassword.getText().toString().trim());
+                    dialog.setMessage("Loading...");
+                    dialog.show();
+
                 }
             }
         });
@@ -88,17 +97,18 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void login(String email, String pass) {
+        dialog.hide();
         System.out.println("Email"+ email);
         RequestQueue myRequestQueue = Volley.newRequestQueue(LogInActivity.this);
         String url = "http://npmc.herokuapp.com/api/accounts/login/";
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("email",email);
+        params.put("email", email);
         params.put("password", pass);
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        stopAnim();
+
                         try {
                             token = response.getString("token");
                             System.out.println("Token is "+token);
@@ -114,6 +124,7 @@ public class LogInActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dialog.hide();
                 Toast.makeText(LogInActivity.this, "Email/Password do not match.", Toast.LENGTH_SHORT).show();
                 mEmail.setText("");
                 mPassword.setText("");
@@ -128,16 +139,6 @@ public class LogInActivity extends AppCompatActivity {
         Intent i = new Intent(LogInActivity.this, MainActivity.class);
         startActivity(i);
         finish();
-    }
-
-    void startAnim(){
-        avi.show();
-        // or avi.smoothToShow();
-    }
-
-    void stopAnim(){
-        avi.hide();
-        // or avi.smoothToHide();
     }
 
     private void requestFocus(View view) {
@@ -163,10 +164,8 @@ public class LogInActivity extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
             switch (view.getId()) {
                 case R.id.input_email:
-                   // validateEmail();
                     break;
                 case R.id.input_password:
-                   // validatePassword();
                     break;
             }
         }
